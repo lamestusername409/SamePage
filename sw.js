@@ -1,5 +1,5 @@
 // Minimal service worker: makes the app installable and shows the shell offline.
-const CACHE = "same-page-v2";
+const CACHE = "same-page-v3";
 const SHELL = ["./", "./index.html", "./app.css", "./app.js", "./config.js", "./manifest.json", "./icon-192.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))); self.clients.claim(); });

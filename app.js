@@ -39,11 +39,24 @@ function lsSet(k,v){ try{localStorage.setItem(k,v)}catch(e){} }
 /* ---------- auth ---------- */
 const provider = new GoogleAuthProvider();
 const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const authErr = e => ({
+  "auth/unauthorized-domain":"This address isn't authorized in Firebase yet. Add lamestusername409.github.io under Authentication → Settings → Authorized domains.",
+  "auth/popup-blocked":"The sign-in window was blocked. Try again, or use email and password below.",
+  "auth/popup-closed-by-user":"The sign-in window was closed before finishing.",
+  "auth/cancelled-popup-request":"",
+  "auth/network-request-failed":"No connection — check Wi-Fi and try again.",
+}[e.code] ?? ("Google sign-in didn't work ("+(e.code||e.message)+"). Email and password below always works."));
 $("googleBtn").onclick = async ()=>{
   $("signinErr").textContent="";
-  try{ await setPersistence(auth, browserLocalPersistence); if(standalone) await signInWithRedirect(auth, provider); else await signInWithPopup(auth, provider); }
-  catch(e){ try{ await signInWithRedirect(auth, provider); }catch(e2){ $("signinErr").textContent="Sign-in didn't work: "+(e2.message||e2.code); } }
+  try{ await setPersistence(auth, browserLocalPersistence); }catch(e){}
+  try{ await signInWithPopup(auth, provider); return; }
+  catch(e){
+    if(e.code==="auth/unauthorized-domain"||e.code==="auth/popup-closed-by-user"){ $("signinErr").textContent=authErr(e); return; }
+  }
+  try{ await signInWithRedirect(auth, provider); }
+  catch(e2){ $("signinErr").textContent=authErr(e2); }
 };
+if(standalone){ $("standaloneNote").hidden=false; }
 function emailPass(){
   const email=$("emailIn").value.trim().toLowerCase(), pass=$("passIn").value;
   $("signinErr").textContent="";

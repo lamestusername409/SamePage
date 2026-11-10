@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="app.css?v=2">
+<link rel="stylesheet" href="app.css?v=3">
 </head>
 <body>
 
@@ -28,19 +28,20 @@
 
   <section id="signin" class="card gate" hidden>
     <h2 class="h"><span class="ic">🔑</span>Sign in to open the book</h2>
-    <p class="sub">Only the two of you can get in.</p>
-    <button id="googleBtn" class="btn green" type="button">Sign in with Google</button>
-    <div class="eyebrow" style="margin-top:4px">Or with email</div>
+    <p class="sub">Only the two of you can get in. You'll stay signed in on this device.</p>
     <label class="lbl" for="emailIn">Email</label>
     <input id="emailIn" type="email" placeholder="you@example.com" autocomplete="email">
     <label class="lbl" for="passIn">Password</label>
     <input id="passIn" type="password" placeholder="Password" autocomplete="current-password">
     <div class="row wrap">
-      <button id="emailBtn" class="btn outline" type="button">Sign in</button>
+      <button id="emailBtn" class="btn green" type="button">Sign in</button>
       <button id="createBtn" class="btn outline" type="button">First time? Create account</button>
       <button id="resetBtn" class="btn ghost" type="button">Forgot password</button>
     </div>
     <p class="hint" id="signinErr"></p>
+    <div class="eyebrow" style="margin-top:4px">Or</div>
+    <button id="googleBtn" class="btn outline" type="button">Sign in with Google</button>
+    <p class="hint" id="standaloneNote" hidden>Google sign-in can be flaky inside the home-screen app on iPhone. If it loops or does nothing, use your email and a password above — it works the same and stays signed in.</p>
   </section>
 
   <section id="notyou" class="card gate" hidden>
@@ -140,6 +141,6 @@
   </div>
 </main>
 <div class="toast" id="toast"></div>
-<script type="module" src="app.js?v=2"></script>
+<script type="module" src="app.js?v=3"></script>
 </body>
 </html>
