@@ -5,7 +5,8 @@ export const READERS = {
 };
 
 // The question deck. Add, remove, or spice up freely.
-export const QUESTIONS = [
+// Spicy deck — flirty, betrayal, moral-dilemma energy.
+export const SPICY = [
 "Which character would you have an affair with, and how long before you regretted it?",
 "Who in this book is lying to themselves the hardest? Be specific.",
 "Rank the characters by who you'd trust with a secret. Now rank them by who you'd trust with your husband.",
@@ -37,3 +38,24 @@ export const QUESTIONS = [
 "Which character is performing happiness, and who's buying it?",
 "What's the pettiest reason you've started to hate a character?",
 ];
+
+// Mild deck — thoughtful, still a little nosy.
+export const MILD = [
+"Which character do you understand the most, and does that worry you?",
+"What's the moment so far that you'd read aloud to someone?",
+"Which character would you want to have coffee with, and what would you ask them?",
+"What do you think the title really means, now that you're this far in?",
+"Who's the most underrated character so far?",
+"Is the narrator telling us everything? What's being held back?",
+"Which setting in the book do you want to visit, and which would you avoid?",
+"What's one thing you'd change about the main character's choices so far?",
+"Which minor character deserves their own book?",
+"What's the best line so far? Why did it land?",
+"Who in this book reminds you of someone we both know (kindly)?",
+"If you had to describe the mood of this book as a drink, what is it?",
+"Which relationship in the book are you rooting for, and why?",
+"What's a prediction you're willing to be wrong about?",
+"Is the author being fair to all the characters?",
+];
+
+export const QUESTIONS = SPICY;
