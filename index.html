@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Same Page</title>
+<meta name="theme-color" content="#3b2a5a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Same Page">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div id="signin" class="gate" hidden>
+    <div class="eyebrow">Same Page · book club for two</div>
+    <h1>Sign in to open the book</h1>
+    <p class="note">Only the two of you can get in. Sign in with the Google account you told Claude about.</p>
+    <button id="googleBtn" class="primary" type="button">Sign in with Google</button>
+    <div class="eyebrow" style="margin-top:6px">Or with email</div>
+    <input id="emailIn" type="email" placeholder="Email" autocomplete="email" aria-label="Email">
+    <input id="passIn" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button id="emailBtn" type="button">Sign in</button>
+      <button id="createBtn" type="button">First time? Create account</button>
+      <button id="resetBtn" type="button">Forgot password</button>
+    </div>
+    <p class="note" id="signinErr"></p>
+  </div>
+
+  <div id="notyou" class="gate" hidden>
+    <div class="eyebrow">Same Page</div>
+    <h1>This book club is full</h1>
+    <p class="note">That account isn't one of the two readers. <span id="notyouEmail"></span></p>
+    <button id="signout2" type="button">Sign out</button>
+  </div>
+
+  <div id="loading" class="gate"><div class="eyebrow">Same Page</div><p class="note">Opening the book…</p></div>
+
+  <div id="app" hidden>
+    <div class="top">
+      <div>
+        <div class="eyebrow">Same Page</div>
+        <h1>Reading together</h1>
+      </div>
+      <div class="who"><span class="av sm" id="meAv">A</span><span id="meName"></span><button id="signout" type="button">sign out</button></div>
+    </div>
+
+    <div class="book" id="book">
+      <div class="eyebrow">Now reading <button id="editBook" type="button" class="tiny">change</button></div>
+      <div class="title" id="bookTitle">Untitled</div>
+      <div class="author" id="bookAuthor"></div>
+      <div class="edit">
+        <input id="inTitle" placeholder="Book title" aria-label="Book title">
+        <input id="inAuthor" placeholder="Author" aria-label="Author">
+        <button id="saveBook" class="primary" type="button">Save</button>
+        <button id="cancelBook" type="button">Cancel</button>
+      </div>
+      <div class="spine" id="spine">
+        <div class="track"><div class="fill andrea" id="fillAndrea" style="width:0%"></div><div class="fill allie" id="fillAllie" style="width:0%"></div></div>
+        <div class="marker andrea" id="mkAndrea" style="left:0%"><span class="av sm andrea">A</span><span class="pct">0%</span></div>
+        <div class="marker allie" id="mkAllie" style="left:0%"><span class="av sm allie">A</span><span class="pct">0%</span></div>
+        <div id="pins"></div>
+      </div>
+      <div class="ticks"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+    </div>
+
+    <div class="me">
+      <label for="pctRange"><span class="av sm" id="meAv2">A</span>I'm at</label>
+      <input type="range" id="pctRange" min="0" max="100" value="0" aria-label="My progress">
+      <input type="number" id="pctNum" min="0" max="100" value="0" aria-label="My progress percent"><span>%</span>
+      <span class="note" id="syncNote">Libby shows your percentage at the bottom of the page.</span>
+    </div>
+
+    <div class="compose">
+      <div class="row">
+        <div class="eyebrow">Leave a note at <span id="composeAt">0%</span></div>
+        <button class="deal" id="deal" type="button">Deal me a provocative question</button>
+      </div>
+      <textarea id="text" placeholder="A thought, a gasp, a question for her to find when she gets here…"></textarea>
+      <div class="row">
+        <span class="note">She'll only see it once she passes this spot.</span>
+        <button class="primary" id="post" type="button">Pin it here</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow" style="margin-bottom:10px">Notes in the margin</div>
+      <div class="thread" id="thread"><div class="empty">Loading the margin…</div></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
